@@ -1,15 +1,19 @@
-import { useState } from "react";
+import { useState, KeyboardEvent } from "react";
 import {
   InputContainer,
+  InputConcluidoContainer,
   ListaContainer,
   ListaTarefasContainer,
+  ListaConcluidaContainer,
   Tarefa,
+  TarefaConcluida,
   TaskInput,
   AddTaskButton,
   RemoveButton,
   LinhaHorizontal
 } from "./styled";
 import bin from "../../assets/bin.png";
+import { keyboard } from "@testing-library/user-event/dist/keyboard";
 
 export function ListaTarefas() {
   const [lista, setLista] = useState(["Fazer exercícios", "Estudar React"]);
@@ -25,6 +29,15 @@ export function ListaTarefas() {
     setNovaTarefa("");
   };
 
+
+  const enterTarefa =(evento) => {
+    if(evento.key === 'Enter') {
+      const novaLista = [...lista, novaTarefa];
+      setLista(novaLista);
+      setNovaTarefa("");
+    }
+  }
+
   const removeTarefa = (tarefa) => {
     const listaFiltrada = lista.filter((item) => item !== tarefa);
     setLista(listaFiltrada);
@@ -33,7 +46,7 @@ export function ListaTarefas() {
   return (
     <ListaTarefasContainer>
       <InputContainer>
-        <TaskInput
+        <TaskInput onKeyPress={enterTarefa}
           placeholder="Digite aqui uma tarefa"
           value={novaTarefa}
           onChange={onChangeTarefa}
@@ -55,6 +68,19 @@ export function ListaTarefas() {
         </ul>
       </ListaContainer>
       <LinhaHorizontal/>
+      <InputConcluidoContainer>TAREFAS JÁ CONCLUÍDAS</InputConcluidoContainer>
+      <ListaConcluidaContainer>
+        <ul>
+          {lista.map((item) => {
+            return (
+              <TarefaConcluida>
+                <p>{item}</p>
+              </TarefaConcluida>
+            );
+          })}
+        </ul>
+      </ListaConcluidaContainer>
     </ListaTarefasContainer>
   );
 }
+

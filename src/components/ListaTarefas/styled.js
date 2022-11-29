@@ -23,6 +23,18 @@ export const InputContainer = styled.div`
   border-bottom-left-radius: 15px;
 `;
 
+export const InputConcluidoContainer = styled.div`
+  padding: 2rem;
+  width: 100%;
+  color: white;
+  background-color: #4e5abc;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+`;
+
 export const TaskInput = styled.input`
   padding: 0.75rem;
   border-radius: 0.5rem;
@@ -42,6 +54,15 @@ export const ListaContainer = styled.div`
   display: flex;
   flex-direction: column;
   overflow: auto;
+`;
+
+export const ListaConcluidaContainer = styled.div`
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  opacity: 35%;
+  text-decoration: line-through;
 `;
 
 export const RemoveButton = styled.button`
@@ -67,6 +88,21 @@ export const Tarefa = styled.li`
     background-color: lightblue;
   }
 `;
+
+export const TarefaConcluida = styled.li`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 6px 8px;
+  transition: background-color 0.3s;
+  &:hover {
+    background-color: lightblue;
+  }
+`;
+
 
 export const LinhaHorizontal = styled.hr`
   width: 100%;
